@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Blog
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="blog"><br>
+        {% if latest_articles_list %}
+            {% for a in latest_articles_list %}
+                <div class="blog-img">
+                    <img src="{{ a.image.url }}">
+                </div>
+                <div class="blog-body">
+                    <h5 class="blog-title">"{{ a.title|safe }}"</h5>
+                     
+                        <p class="blog-text">{{ a.text|truncatechars:50 |safe}}</p>
+                     
+                    <p class="blog-pub_date">{{ a.pub_date|date:"D d M Y"|safe }}</p>
+                    <a href="{% url 'blog:detail' a.id %}" class="blog-btn">Read more</a>
+                </div>
+                <br>
+            {% endfor %}
+        {% else %}
+            <h2 align="center">No articles!</h2>
+        {% endif %}
+    </div>
+
+
+
+
+
+    </div>
+{% endblock %}

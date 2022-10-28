@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Oferta
+{% endblock %}
+
+{% block content %}
+
+    <table class="photo-block" style="border: none">
+        {% for a in latest_articles_list %}
+            {% if forloop.counter0|divisibleby:3 %}
+                <tr class="gallery-tr">
+            {% endif %}
+        <td class="blog-img">
+
+            <a class="img-flu images" href="{{ a.image.url }}">
+                <img class="img-flu" src="{{ a.image.url }}">
+                <div class="blog-body">
+                    <h5 class="blog-title">"{{ a.title }}"</h5>
+
+                    <a href="{% url 'oferta:detail' a.id %}" class="blog-btn">Read more</a>
+                </div>
+            </a>
+        </td>
+        {% if forloop.counter|divisibleby:3 %}
+            </tr>
+        {% endif %}
+        {% endfor %}
+        </tr>
+    </table>
+    <div class="lightbox">
+        <div class="lightbox-cnt">
+            <img src="" class="lightbox-img" alt="">
+            <button class="lightbox-close"><span>&#10006;</span></button>
+        </div>
+    </div>
+    </div>
+
+    </div>
+{% endblock %}
+

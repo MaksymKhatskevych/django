@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    contakty
+{% endblock %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+   <div class="container" align="center">
+        <div class="contakty">
+            <div class="card" style="width: 40rem;">
+                {% for news in home %}
+                    <h2 align="center">{{ news.title_news|safe }}</h2>
+                    <img class="card-img" src="{{ news.image_news.url }}" class="img-fluid" alt="..." align="center">
+                    <div class="card-body">
+                        <p class="card-text">{{ news.description|safe }}</p>
+                    </div>
+                    <p align="center">{{ news.published|safe }}</p>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-kontakty">
+            <h3 align="center" id="home_id">Contakty</h3>
+            {% for contacts in contacts %}
+                <p align="center">Tel.:{{ contacts.phone }} </p>
+                <br>
+                <p align="center"><a href=Email:{{ contacts.email }}>Email:{{ contacts.email }}</a></p>
+                <br>
+                <p align="center">Instagram:{{ contacts.instagram_link }}</p>
+                <br>
+                <p align="center">Telegram:{{ contacts.telega_link }}</p>
+                <br>
+                <p align="center">Facebook:{{ contacts.facebook_link }}</p>
+                </div>
+            {% endfor %}
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+{% load static %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block content %}
+ 
+<div>
+<div class="example-class">
+
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
+      {% for template_name in template_name %}
+        <div class="card-header">{{ template_name.title }}</div>
+            <div class="card-body text-primary">
+                <p class="card-text">{{ template_name.text|safe }}</p>   
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+<div class="panel-success">
+    <div class="panel-heading">
+        <h2 class="panel-title">Обратная связь</h2>
+    </div>
+        <div class="panel-body">
+            <div class="well well-lg">
+                <form action="{% url 'order' %}" method="post">
+                    {% csrf_token %}
+                    {#    {% bootstrap_form form %}#}
+                    {{ form.non_field_errors }}
+                    <div>
+                        <div>
+                            <label for="id_subject">Imię i nazwisko:</label>
+                            {{ form.subject.errors }}
+                            {#    {{ form.subject }}#}
+                            <input class="form-control" id="id_subject" name="subject" placeholder="Imię i nazwisko">
+                        </div>
+                        &nbsp;
+                        <div>
+                            <label for="id_sender">E-mail:</label>
+                            {{ form.sender.errors }}
+                            {#    {{ form.sender }}#}
+                            <input class="form-control" id="id_sender" name="sender" placeholder="e-mail">
+                        </div>
+                        &nbsp;
+                        <div>
+                            <label for="id_message">Wiadomość:</label>
+                            {{ form.message.errors }}
+                            {#    {{ form.message }}#}
+                            <textarea class="form-control" id="id_message" name="message"
+                                      placeholder="Potszeba wpisać szczegóły zamówienia "></textarea>
+                        </div>
+                        &nbsp;
+                        <div>
+                            {{ form.copy.errors }}
+                            <label for="id_copy">{{ form.copy }} Wysłać copię </label>
+                        </div>
+                        <br>
+                        <input type="submit" class="btn btn-success" align="center" value="Wysłać"/>
+                </form>
+            </div>
+        </div>
+</div>
+</div>    
+
+{% endblock %}
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

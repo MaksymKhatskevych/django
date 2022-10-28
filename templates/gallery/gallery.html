@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Gallery
+{% endblock %}
+
+{% block content %}
+
+    <form class="sort_photos" method="GET">
+        <h2>
+            <input class="btn" type="submit" name="sorting" value="ALL PHOTOS">
+            {% for category in categories %}
+                <input class="btn" type="submit" name="sorting" value="{{ category.category|upper }}">
+            {% endfor %}
+        </h2>
+    </form>
+
+
+    <table class="photo-block" style="border: none">
+        {% for photo in photos %}
+            {% if forloop.counter0|divisibleby:3 %}
+                <tr class="gallery-tr">
+                </tr>
+            {% endif %}
+
+            <td class="gallery-td">
+
+                <a class="img-fluid images" href="{{ photo.image.url }}">
+                    <img class="img-fluid" src="{{ photo.image.url }}">
+                </a>
+            </td>
+            {% if forloop.counter|divisibleby:50 %}
+
+            {% endif %}
+        {% endfor %}
+
+    </table>
+    <div class="lightbox">
+        <div class="lightbox-cnt">
+            <img src="" class="lightbox-img" alt="">
+            <button class="lightbox-close"><span>&#10006;</span></button>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+
+<!--   <table class="photo-block" style="border: none">
+        {% for photo in photos %}
+            {% if forloop.counter0|divisibleby:4 %}
+                <tr class="gallery-tr">
+            {% endif %}
+        <td class="gallery-td">
+            <a class="img-fluid images" href="{{ photo.image.url }}">
+                <img class="img-fluid" src="{{ photo.image.url }}">
+            </a>
+        </td>
+        {% if forloop.counter|divisibleby:4 %}
+            </tr>
+        {% endif %}
+        {% endfor %}
+        </tr>
+    </table>
+    <div class="lightbox">
+        <div class="lightbox-cnt">
+            <img src="" class="lightbox-img" alt="">
+            <button class="lightbox-close"><span>&#10006;</span></button>
+        </div>
+    </div>
+</div>
+
+<!-- 
+<d< iv class="container">
+  <div class="row">
+    
+    <div class="col">
+        {% for photo in photos %}
+            <img src="{{ photo.image.url }}">
+        {% endfor %}
+        <td class="gallery-td">
+            <a class="images" href="{{ photo.image.url }}">
+                <img class="gallery-img-small-2" src="{{ photo.image.url }}">
+            </a>
+        </td>
+    </div>
+    
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-cols-2">
+    {% for photo in photos %}
+    <div class="col">
+        <img src="{{ photo.iamge.url }}">
+    </div>
+    {% endfor %}
+  </div>
+</div> --> -->
